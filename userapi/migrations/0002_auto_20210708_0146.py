@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='user',
             name='email',
-            field=models.EmailField(max_length=254, unique=True, verbose_name='email address'),
+            field=models.EmailField(max_length=254, unique=True, verbose_name='email email'),
         ),
         migrations.AlterField(
             model_name='user',
@@ -28,10 +28,10 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=5)),
                 ('dob', models.DateField()),
-                ('address', models.CharField(max_length=255)),
-                ('country', models.CharField(max_length=50)),
-                ('city', models.CharField(max_length=50)),
-                ('zip', models.CharField(max_length=5)),
+                ('email', models.CharField(max_length=255)),
+                ('school', models.CharField(max_length=50)),
+                ('level', models.CharField(max_length=50)),
+                ('phone', models.CharField(max_length=5)),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='profile', to=settings.AUTH_USER_MODEL)),
             ],
         ),
