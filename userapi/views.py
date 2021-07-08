@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets , generics
 from rest_framework.permissions import AllowAny
 from studyuganda.permissions import IsLoggedInUserOrAdmin, IsAdminUser
 
@@ -19,3 +19,14 @@ class UserViewSet(viewsets.ModelViewSet):
         elif self.action == 'list' or self.action == 'destroy':
           permission_classes = [IsAdminUser]
         return [permission() for permission in permission_classes]
+
+class UserCreate(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (AllowAny, )
+    def create(self, validated_data):
+        password = validated_data.pop('password')
+        user = User(**validated_data)
+        user.set_password(password)
+        user.save()
+        return user
