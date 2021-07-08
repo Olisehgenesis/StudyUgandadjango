@@ -13,5 +13,5 @@ urlpatterns = [
     #other paths
     path(r'', include(router.urls)),
     path(r'auth/', include('rest_auth.urls')),
-    path('account/register', views.UserCreate.as_view())
+    path(r'account/register/', views.UserCreate.as_view())
 ]
